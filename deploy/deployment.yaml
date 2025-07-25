@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: user-management-service
-          image: ghcr.io/SamirMarin/user-management-service-cicd:a3d320deb8cb328927b69200535dcd9e22b86200
+          image: ghcr.io/SamirMarin/user-management-service-cicd:c81546ec8fc9b1379dc4aa6d2cd401b0ffe25c8b
           ports:
             - containerPort: 1324
