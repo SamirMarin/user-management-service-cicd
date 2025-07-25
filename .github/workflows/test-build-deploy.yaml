@@ -79,7 +79,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: Update deployment.yaml
-        uses: fjogeleit/yaml-update-action@v0.14.0
+        uses: fjogeleit/yaml-update-action@v0.16.1
         with:
           valueFile: 'deploy/deployment.yaml'
           propertyPath: 'spec.template.spec.containers[0].image'
