@@ -44,3 +44,25 @@ curl -X POST http://localhost:1324/get \
   "username": "samir@gmail.com"
 }'
 ```
+
+## Deploying the service
+
+1. Validate by running unit test
+
+get a local version of the DB up and running
+
+```
+AWS_ACCESS_KEY_ID=test
+AWS_SECRET_ACCESS_KEY=test
+AWS_DEFAULT_REGION='us-west-2'
+DYNAMODB_LOCAL_ENDPOINT="http://localhost:8000"
+docker compose up -d
+./scripts/create-table.sh
+```
+
+run the tests
+```
+go test -v ./...
+```
+
+2. Build and push the image to registry
