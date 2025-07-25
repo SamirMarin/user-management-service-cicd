@@ -66,3 +66,20 @@ go test -v ./...
 ```
 
 2. Build and push the image to registry
+
+login to registry
+
+```
+export TOKEN=<github-token>
+echo $TOKEN | docker login ghcr.io -u <user> --password-stdin
+```
+
+build the image
+```
+docker build -t ghcr.io/samirmarin/user-management-service-cicd:<tag> .
+```
+
+push the image
+```
+docker push ghcr.io/samirmarin/user-management-service-cicd:<tag>
+```
