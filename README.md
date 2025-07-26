@@ -52,11 +52,11 @@ curl -X POST http://localhost:1324/get \
 get a local version of the DB up and running
 
 ```
-AWS_ACCESS_KEY_ID=test
-AWS_SECRET_ACCESS_KEY=test
-AWS_DEFAULT_REGION='us-west-2'
-DYNAMODB_LOCAL_ENDPOINT="http://localhost:8000"
-docker compose up -d
+export AWS_ACCESS_KEY_ID=test
+export AWS_SECRET_ACCESS_KEY=test
+export AWS_DEFAULT_REGION='us-west-2'
+export DYNAMODB_LOCAL_ENDPOINT="http://localhost:8000"
+docker compose -f deploy/docker-compose.yaml up -d
 ./scripts/create-table.sh
 ```
 
@@ -82,4 +82,14 @@ docker build -t ghcr.io/samirmarin/user-management-service-cicd:<tag> .
 push the image
 ```
 docker push ghcr.io/samirmarin/user-management-service-cicd:<tag>
+```
+
+3. Update deploy/docker-compose.yaml with latest image
+
+Change the image tag for the user-management-service to use the latest build
+
+you can validate the image update process with 
+```
+docker compose -f deploy/docker-compose.yaml pull user-management-service
+docker compose -f deploy/docker-compose.yaml up -d
 ```
