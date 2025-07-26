@@ -83,8 +83,8 @@ jobs:
       - name: Update deployment.yaml
         uses: fjogeleit/yaml-update-action@v0.16.1
         with:
-          valueFile: 'deploy/deployment.yaml'
-          propertyPath: 'spec.template.spec.containers[0].image'
+          valueFile: 'deploy/docker-compose.yaml'
+          propertyPath: 'services.user-management-service.image'
           value: ghcr.io/${{ github.event.repository.owner.login }}/${{ github.event.repository.name }}:${{ github.sha }}
           commitChange: ${{ github.event_name != 'pull_request' }}
           targetBranch: main
