@@ -1,21 +1,19 @@
 version: '3.8'
-
 services:
   dynamodb-local:
     image: amazon/dynamodb-local:latest
     container_name: dynamodb-local
-    command: "-jar DynamoDBLocal.jar sharedDb -dbPath ./data"
+    command: '-jar DynamoDBLocal.jar sharedDb -dbPath ./data'
     working_dir: /home/dynamodblocal
     volumes:
-      - "./docker/dynamodb:/home/dynamodblocal/data"
+      - ./docker/dynamodb:/home/dynamodblocal/data
     ports:
-      - "8000:8000"
-
+      - '8000:8000'
   user-management-service:
-    image: ghcr.io/samirmarin/user-management-service-cicd:test-tag
+    image: ghcr.io/SamirMarin/user-management-service-cicd:b5cd7c9c6840da4d68f302da0472a61dbb179b0d
     container_name: user-management-service
     ports:
-      - "1324:1324"
+      - '1324:1324'
     environment:
       - AWS_REGION=us-west-2
       - AWS_ACCESS_KEY_ID=test
