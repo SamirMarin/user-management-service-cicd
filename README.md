@@ -57,7 +57,7 @@ export AWS_SECRET_ACCESS_KEY=test
 export AWS_DEFAULT_REGION='us-west-2'
 export DYNAMODB_LOCAL_ENDPOINT="http://localhost:8000"
 docker compose -f deploy/docker-compose.yaml up -d
-./scripts/create-table.sh
+./scripts/dynamodb/create-table.sh
 ```
 
 run the tests
