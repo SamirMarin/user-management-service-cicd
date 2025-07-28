@@ -40,6 +40,7 @@ jobs:
           DYNAMODB_LOCAL_ENDPOINT: "http://localhost:8000"
 
   build:
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -76,12 +77,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Set image reference
+        id: image
+        run: |
+          echo "owner_lc=${OWNER,,}" >> "$GITHUB_OUTPUT"
+          echo "repo_lc=${REPO,,}" >> "$GITHUB_OUTPUT"
+        env:
+          OWNER: ${{ github.event.repository.owner.login }}
+          REPO: ${{ github.event.repository.name }}
+
       - name: Update deployment.yaml
         uses: fjogeleit/yaml-update-action@v0.16.1
         with:
           valueFile: 'deploy/docker-compose.yaml'
           propertyPath: services["user-management-service"].image
-          value: ghcr.io/${{ github.event.repository.owner.login }}/${{ github.event.repository.name }}:${{ github.sha }}
+          value: ghcr.io/${{ steps.image.outputs.owner_lc }}/${{ steps.image.outputs.repo_lc }}:${{ github.sha }}
           commitChange: ${{ github.event_name != 'pull_request' }}
           targetBranch: main
           masterBranchName: main
