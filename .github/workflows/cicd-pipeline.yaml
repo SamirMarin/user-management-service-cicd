@@ -73,6 +73,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           
   delivery:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
