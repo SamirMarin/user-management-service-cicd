@@ -17,3 +17,5 @@ permissions:
 jobs:
   cicd-pipeline:
     uses: samirmarin/github-actions-by-example-reusable-workflows/.github/workflows/reusable-cicd-pipeline.yaml@cicd-pipeline-reusable-workflow
+    with:
+      deploy-service-name: user-management-service
