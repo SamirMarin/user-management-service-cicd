@@ -8,6 +8,12 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  packages: write
+
 jobs:
   cicd-pipeline:
     uses: samirmarin/github-actions-by-example-reusable-workflows/.github/workflows/reusable-cicd-pipeline.yaml@cicd-pipeline-reusable-workflow
