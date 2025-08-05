@@ -1,0 +1,21 @@
+name: CICD Pipeline reusable
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  packages: write
+
+jobs:
+  cicd-pipeline:
+    uses: samirmarin/github-actions-by-example-reusable-workflows/.github/workflows/reusable-cicd-pipeline.yaml@cicd-pipeline-v0.0.1
+    with:
+      deploy-service-name: user-management-service
